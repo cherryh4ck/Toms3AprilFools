@@ -1,0 +1,6 @@
+name: Toms3AprilFools
+version: '1.0'
+main: io.github.Cherryh4ck.toms3AprilFools.Toms3AprilFools
+api-version: '1.21'
+authors: [ Cherryh4ck ]
+description: April fools
