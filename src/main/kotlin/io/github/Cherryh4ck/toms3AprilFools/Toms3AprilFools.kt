@@ -1,5 +1,6 @@
 package io.github.Cherryh4ck.toms3AprilFools
 
+import io.github.Cherryh4ck.toms3AprilFools.Listener.MobSpawnListener
 import io.github.Cherryh4ck.toms3AprilFools.Commands.OPSword
 import org.bukkit.Bukkit
 import org.bukkit.Location
@@ -15,6 +16,7 @@ class Toms3AprilFools : JavaPlugin() {
             playerDataPath.mkdirs()
         }
         getCommand("32k")?.setExecutor(OPSword(this))
+        server.pluginManager.registerEvents(MobSpawnListener(this), this)
 
         logger.info("Happy april fools!")
         logger.info("Plugin inicializado.")
