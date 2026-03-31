@@ -4,3 +4,7 @@ main: io.github.Cherryh4ck.toms3AprilFools.Toms3AprilFools
 api-version: '1.21'
 authors: [ Cherryh4ck ]
 description: April fools
+commands:
+  32k:
+    description: 32k.
+    usage: /32k
