@@ -30,24 +30,23 @@ class OPSword(private val plugin : Toms3AprilFools) : CommandExecutor {
             return true
         }
 
-        val playerData = File(plugin.playerDataPath, "${sender.name}.yml")
         val locale = sender.locale().toString()
-        if (playerData.exists()) {
-            val message = if (locale.startsWith("es")){
-                minimessage.deserialize("<red>No, no otra vez.")
-            }
-            else{
-                minimessage.deserialize("<red>No, not again.")
-            }
-            sender.sendMessage(message)
-            return true
-        }
-        playerData.createNewFile()
         val mainhandItem = sender.inventory.itemInMainHand
         val casco = sender.inventory.helmet
 
         if (mainhandItem.type != Material.AIR && mainhandItem.type.toString().contains("SWORD")) {
+            val playerData = File(plugin.playerDataPath, "${sender.name}.yml")
             val meta = mainhandItem.itemMeta
+            if (playerData.exists()) {
+                val message = if (locale.startsWith("es")){
+                    minimessage.deserialize("<red>No, no otra vez.")
+                }
+                else{
+                    minimessage.deserialize("<red>No, not again.")
+                }
+                sender.sendMessage(message)
+                return true
+            }
             meta.enchants.keys.forEach { enchantment ->
                 meta.removeEnchant(enchantment)
             }
@@ -61,10 +60,10 @@ class OPSword(private val plugin : Toms3AprilFools) : CommandExecutor {
             sender.inventory.helmet = createPumpkin()
 
             val message = if (locale.startsWith("es")){
-                minimessage.deserialize("<light_purple>¡Lo siento!")
+                minimessage.deserialize("<light_purple>¡Feliz Día de los Inocentes!")
             }
             else{
-                minimessage.deserialize("<light_purple>Sorry!")
+                minimessage.deserialize("<light_purple>Happy April Fools!")
             }
             val health = sender.health - 1.0
             sender.damage(health)
@@ -78,8 +77,8 @@ class OPSword(private val plugin : Toms3AprilFools) : CommandExecutor {
                 player.playSound(player.location, org.bukkit.Sound.ENTITY_WITHER_SPAWN, 1000f, 1f)
             }
 
-
             sender.sendMessage(message)
+            playerData.createNewFile()
         }
         else{
             val message = if (locale.startsWith("es")){
@@ -101,7 +100,7 @@ class OPSword(private val plugin : Toms3AprilFools) : CommandExecutor {
         meta?.apply {
             setRarity(ItemRarity.EPIC)
 
-            customName(minimessage.deserialize("I'm actually retarded >w<"))
+            customName(minimessage.deserialize("I'm actually retarded :3"))
             lore(itemLore.map{minimessage.deserialize(it)})
             addEnchant(Enchantment.BINDING_CURSE, 1, true)
 

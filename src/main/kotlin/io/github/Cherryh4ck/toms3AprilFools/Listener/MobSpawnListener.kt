@@ -54,7 +54,7 @@ class MobSpawnListener(private val plugin: Toms3AprilFools) : Listener {
     private fun createMaxedItem(material: Material): ItemStack {
         val item = ItemStack(material)
         val meta = item.itemMeta
-        if (!material.name.contains("SWORD") || !material.name.contains("BOW")) {
+        if (!material.name.contains("SWORD") && !material.name.contains("BOW")) {
             meta?.addEnchant(Enchantment.PROTECTION, 4, true)
             meta?.addEnchant(Enchantment.UNBREAKING, 3, true)
             meta?.addEnchant(Enchantment.THORNS, 3, true)
